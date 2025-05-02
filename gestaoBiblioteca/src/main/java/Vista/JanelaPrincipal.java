@@ -269,9 +269,44 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
         DialogAdicionarEditarLivro dialog = new DialogAdicionarEditarLivro(this, true, null); // 'this' é o JFrame pai, 'true' para modal, 'null' para adicionar
         dialog.setVisible(true);
-        atualizarTabelaLivros); // Atualiza a tabela depois que o diálogo fecha
+        atualizarTabelaLivros(); // Atualiza a tabela depois que o diálogo fecha
     }//GEN-LAST:event_botaoAdicionarLivroActionPerformed
 
+     private void atualizarTabelaLivros() {
+        // Verifica se o modelo da tabela foi inicializado (segurança)
+        if (tabelaLivros == null) {
+             System.err.println("Erro: tableModelLivros não foi inicializado em configurarTabelas().");
+             // Você pode querer inicializá-lo aqui se for o caso, ou lançar um erro.
+             // Exemplo: configurarTabelas(); // Chama se ainda não foi chamado
+             // if (tableModelLivros == null) return; // Sai se ainda for null
+             return; // Ou simplesmente sai se não estiver pronto
+        }
+         // Verifica se a lista de dados foi inicializada (segurança)
+         if (listaLivros == null) {
+             System.err.println("Erro: listaLivros não foi inicializada.");
+             // Você pode querer inicializá-la aqui se for o caso
+             // Exemplo: listaLivros = new ArrayList<>();
+             return; // Sai se não estiver pronta
+         }
+
+        // 1. Limpa todas as linhas existentes na tabela visual
+        tabelaLivros.setRowCount(0);
+
+        // 2. Itera sobre a lista de livros atualizada
+        for (Livro livro : listaLivros) {
+            // 3. Cria um array de Object com os dados do livro para a linha da tabela
+            Object[] rowData = new Object[]{
+                livro.getId(),
+                livro.getIsbn(),
+                livro.getTitulo(),
+                livro.getAutor(),
+                // Converte o boolean 'disponivel' para uma String mais legível
+                livro.isDisponivel() ? "Disponível" : "Emprestado"
+            };
+            // 4. Adiciona a nova linha ao modelo da tabela
+            tabelaLivros.addRow(rowData);
+        }
+    }
     /**
      * @param args the command line arguments
      */

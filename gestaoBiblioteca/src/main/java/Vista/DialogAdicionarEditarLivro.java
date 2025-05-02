@@ -4,10 +4,9 @@
  */
 package Vista;
 import com.mycompany.gestaobiblioteca.Livro;
+
 import javax.swing.*;
 import java.awt.Frame;
-import Vista.JanelaPrincipal;
-
 
 /**
  *
@@ -17,44 +16,47 @@ public class DialogAdicionarEditarLivro extends javax.swing.JDialog {
 
     /**
      * Creates new form DialogAdicionarEditarLivro
-     */private Livro livroParaEditar;
-       private JanelaPrincipal janelaPrincipal;
+     */
+    
+    private Livro livroParaEditar;
+    private JanelaPrincipal janelaPrincipal;
     
     public DialogAdicionarEditarLivro(java.awt.Frame parent, boolean modal, Livro livro) {
-        super(parent, modal);//Chamar o contsrutor da super classe JDialog
-        this.livroParaEditar=livro;//Função para guardar o livro, podendo ser nulo
-       if (parent instanceof JanelaPrincipal) {
-            // Se for, faz o cast (conversão segura) e guarda na variável
-            this.janelaPrincipal = (JanelaPrincipal) parent;
-        } else {
-            // Opcional: Lidar com o caso em que o pai não é o esperado
-            // System.err.println("Aviso: O pai do diálogo não é uma JanelaPrincipal.");
-             this.janelaPrincipal = null; // Ou define como null
+        super(parent, modal);
+        this.livroParaEditar = livro;
+        
+        if(parent instanceof JanelaPrincipal){
+            this.janelaPrincipal=(JanelaPrincipal) parent;
+        }else{
+             throw new IllegalArgumentException("O 'parent' deste diálogo deve ser uma instância de JanelaPrincipal.");
         }
         
         initComponents();
-        configurarDialogo();
-
-        // 5. Opcional: Centraliza o diálogo em relação ao pai
+        configurarDialogo();   
         setLocationRelativeTo(parent);
     }
-
-    // --- Método para configurar campos (exemplo) ---
+    
     private void configurarDialogo() {
         if (this.livroParaEditar != null) {
-            // Modo Edição: Preenche os campos
-            setTitle("Editar Livro"); // Muda o título da janela do diálogo
-            // Assumindo que você tem TextFields com estes nomes de variável:
-            if (isbnTextField != null) isbnTextField.setText(livroParaEditar.getIsbn());
-            if (tituloTextField != null) tituloTextField.setText(livroParaEditar.getTitulo());
-            if (autorTextField != null) autorTextField.setText(livroParaEditar.getAutor());
-            if (confirmarButton != null) confirmarButton.setText("Guardar Alterações");
+            // --- Modo Edição ---
+            setTitle("Editar Livro"); // Define o título da janela do diálogo
+            // Preenche os campos de texto com os dados do livro existente
+            // Usa os nomes das variáveis definidas no NetBeans (isbn, titulo, autor)
+            isbn.setText(livroParaEditar.getIsbn());
+            titulo.setText(livroParaEditar.getTitulo());
+            autor.setText(livroParaEditar.getAutor());
+            // Muda o texto do botão de confirmação
+            confirmarButton.setText("Guardar Alterações");
         } else {
-            // Modo Adição: Campos vazios (já devem estar)
-             setTitle("Adicionar Novo Livro"); // Muda o título da janela do diálogo
-             if (confirmarButton != null) confirmarButton.setText("Adicionar Livro");
+            // --- Modo Adição ---
+            setTitle("Adicionar Novo Livro"); // Define o título da janela do diálogo
+            // Garante que os campos de texto estão vazios (o NetBeans pode ter colocado texto padrão)
+            isbn.setText("");
+            titulo.setText("");
+            autor.setText("");
+            // Define o texto do botão de confirmação
+            confirmarButton.setText("Adicionar Livro"); // Ajustado do seu código original
         }
-    
     }
 
     /**
@@ -69,27 +71,37 @@ public class DialogAdicionarEditarLivro extends javax.swing.JDialog {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        isbnTextField = new javax.swing.JTextField();
-        tituloTextField = new javax.swing.JTextField();
-        autorTextField = new javax.swing.JTextField();
+        isbn = new javax.swing.JTextField();
+        titulo = new javax.swing.JTextField();
+        autor = new javax.swing.JTextField();
         confirmarButton = new javax.swing.JButton();
         cancelarButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jLabel1.setText("ISBN:");
+        jLabel1.setText("ISBN");
 
-        jLabel2.setText("Título:");
+        jLabel2.setText("Título");
 
         jLabel3.setText("Autor:");
 
-        isbnTextField.setText("jTextField1");
+        isbn.setText("jTextField1");
+        isbn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                isbnActionPerformed(evt);
+            }
+        });
 
-        tituloTextField.setText("jTextField2");
+        titulo.setText("jTextField2");
 
-        autorTextField.setText("jTextField3");
+        autor.setText("jTextField3");
+        autor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                autorActionPerformed(evt);
+            }
+        });
 
-        confirmarButton.setText("Confirmar");
+        confirmarButton.setText("Adicionar");
         confirmarButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 confirmarButtonActionPerformed(evt);
@@ -110,21 +122,21 @@ public class DialogAdicionarEditarLivro extends javax.swing.JDialog {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(autorTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(autor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1)
-                                    .addComponent(jLabel2))
+                                .addComponent(jLabel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(tituloTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(isbnTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(titulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(isbn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(124, 124, 124)
                         .addComponent(confirmarButton)
                         .addGap(29, 29, 29)
                         .addComponent(cancelarButton)))
-                .addContainerGap(84, Short.MAX_VALUE))
+                .addContainerGap(87, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -132,15 +144,15 @@ public class DialogAdicionarEditarLivro extends javax.swing.JDialog {
                 .addGap(88, 88, 88)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(isbnTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(isbn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
-                    .addComponent(tituloTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(titulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(autorTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(autor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(confirmarButton)
@@ -153,58 +165,26 @@ public class DialogAdicionarEditarLivro extends javax.swing.JDialog {
 
     private void confirmarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmarButtonActionPerformed
         // TODO add your handling code here:
-if (janelaPai == null) {
-             JOptionPane.showMessageDialog(this, "Erro interno: Referência à janela principal não definida.", "Erro Crítico", JOptionPane.ERROR_MESSAGE);
-             return;
-        }
-
-        String isbn = isbnTextField.getText().trim();
-        String titulo = tituloTextField.getText().trim();
-        String autor = autorTextField.getText().trim();
-
-        if(isbn.isBlank() || titulo.isBlank() || autor.isBlank()) {
-             JOptionPane.showMessageDialog(this, "Todos os campos são obrigatórios!", "Erro de Validação", JOptionPane.WARNING_MESSAGE);
-             return;
-        }
-
-        if (livroParaEditar == null) {
-             if(janelaPrincipal.isbnJaExiste(isbn)){
-                 JOptionPane.showMessageDialog(this, "Já existe um livro com este ISBN.", "Erro de Validação", JOptionPane.ERROR_MESSAGE);
-                 return;
-             }
-             Livro novoLivro = new Livro(janelaPrincipal.getProximoIdLivro(), isbn, titulo, autor);
-             boolean adicionado = janelaPrincipal.adicionarLivroNaLista(novoLivro);
-             if(adicionado) {
-                JOptionPane.showMessageDialog(this, "Livro adicionado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
-                dispose();
-             } else {
-                JOptionPane.showMessageDialog(this, "Erro ao adicionar o livro na lista.", "Erro", JOptionPane.ERROR_MESSAGE);
-             }
-
-        } else {
-             if(janelaPrincipal.isbnJaExisteEmOutroLivro(isbn, livroParaEditar.getId())){
-                  JOptionPane.showMessageDialog(this, "Já existe outro livro com este ISBN.", "Erro de Validação", JOptionPane.ERROR_MESSAGE);
-                 return;
-             }
-             livroParaEditar.setIsbn(isbn);
-             livroParaEditar.setTitulo(titulo);
-             livroParaEditar.setAutor(autor);
-             // A atualização acontece por referência, só precisamos fechar
-             JOptionPane.showMessageDialog(this, "Livro atualizado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
-             dispose();
-        }
     }//GEN-LAST:event_confirmarButtonActionPerformed
+
+    private void isbnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_isbnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_isbnActionPerformed
+
+    private void autorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_autorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_autorActionPerformed
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+   // public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-        try {
+        /*try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
@@ -221,11 +201,16 @@ if (janelaPai == null) {
             java.util.logging.Logger.getLogger(DialogAdicionarEditarLivro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the dialog */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
+        /*java.awt.EventQueue.invokeLater(new Runnable() {
+       public void run() {
+                // ERRO ESTÁ AQUI: Chama o construtor antigo com apenas 2 argumentos
                 DialogAdicionarEditarLivro dialog = new DialogAdicionarEditarLivro(new javax.swing.JFrame(), true);
+
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -233,18 +218,16 @@ if (janelaPai == null) {
                     }
                 });
                 dialog.setVisible(true);
-            }
-        });
-    }
+            }*/
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField autorTextField;
+    private javax.swing.JTextField autor;
     private javax.swing.JButton cancelarButton;
     private javax.swing.JButton confirmarButton;
-    private javax.swing.JTextField isbnTextField;
+    private javax.swing.JTextField isbn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JTextField tituloTextField;
+    private javax.swing.JTextField titulo;
     // End of variables declaration//GEN-END:variables
 }
