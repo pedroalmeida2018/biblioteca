@@ -269,7 +269,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
         DialogAdicionarEditarLivro dialog = new DialogAdicionarEditarLivro(this, true, null); // 'this' é o JFrame pai, 'true' para modal, 'null' para adicionar
         dialog.setVisible(true);
-        atualizarTabelaLivros(); // Atualiza a tabela depois que o diálogo fecha
+        atualizarTabelaLivros); // Atualiza a tabela depois que o diálogo fecha
     }//GEN-LAST:event_botaoAdicionarLivroActionPerformed
 
     /**
@@ -336,3 +336,11 @@ public class JanelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JTable tabelaMembros;
     // End of variables declaration//GEN-END:variables
 }
+
+
+
+
+
+
+
+

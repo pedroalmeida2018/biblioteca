@@ -3,6 +3,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
 package Vista;
+import com.mycompany.gestaobiblioteca.Livro;
+import javax.swing.*;
+import java.awt.Frame;
+import Vista.JanelaPrincipal;
+
 
 /**
  *
@@ -12,10 +17,44 @@ public class DialogAdicionarEditarLivro extends javax.swing.JDialog {
 
     /**
      * Creates new form DialogAdicionarEditarLivro
-     */
-    public DialogAdicionarEditarLivro(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
+     */private Livro livroParaEditar;
+       private JanelaPrincipal janelaPrincipal;
+    
+    public DialogAdicionarEditarLivro(java.awt.Frame parent, boolean modal, Livro livro) {
+        super(parent, modal);//Chamar o contsrutor da super classe JDialog
+        this.livroParaEditar=livro;//Função para guardar o livro, podendo ser nulo
+       if (parent instanceof JanelaPrincipal) {
+            // Se for, faz o cast (conversão segura) e guarda na variável
+            this.janelaPrincipal = (JanelaPrincipal) parent;
+        } else {
+            // Opcional: Lidar com o caso em que o pai não é o esperado
+            // System.err.println("Aviso: O pai do diálogo não é uma JanelaPrincipal.");
+             this.janelaPrincipal = null; // Ou define como null
+        }
+        
         initComponents();
+        configurarDialogo();
+
+        // 5. Opcional: Centraliza o diálogo em relação ao pai
+        setLocationRelativeTo(parent);
+    }
+
+    // --- Método para configurar campos (exemplo) ---
+    private void configurarDialogo() {
+        if (this.livroParaEditar != null) {
+            // Modo Edição: Preenche os campos
+            setTitle("Editar Livro"); // Muda o título da janela do diálogo
+            // Assumindo que você tem TextFields com estes nomes de variável:
+            if (isbnTextField != null) isbnTextField.setText(livroParaEditar.getIsbn());
+            if (tituloTextField != null) tituloTextField.setText(livroParaEditar.getTitulo());
+            if (autorTextField != null) autorTextField.setText(livroParaEditar.getAutor());
+            if (confirmarButton != null) confirmarButton.setText("Guardar Alterações");
+        } else {
+            // Modo Adição: Campos vazios (já devem estar)
+             setTitle("Adicionar Novo Livro"); // Muda o título da janela do diálogo
+             if (confirmarButton != null) confirmarButton.setText("Adicionar Livro");
+        }
+    
     }
 
     /**
@@ -114,6 +153,46 @@ public class DialogAdicionarEditarLivro extends javax.swing.JDialog {
 
     private void confirmarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmarButtonActionPerformed
         // TODO add your handling code here:
+if (janelaPai == null) {
+             JOptionPane.showMessageDialog(this, "Erro interno: Referência à janela principal não definida.", "Erro Crítico", JOptionPane.ERROR_MESSAGE);
+             return;
+        }
+
+        String isbn = isbnTextField.getText().trim();
+        String titulo = tituloTextField.getText().trim();
+        String autor = autorTextField.getText().trim();
+
+        if(isbn.isBlank() || titulo.isBlank() || autor.isBlank()) {
+             JOptionPane.showMessageDialog(this, "Todos os campos são obrigatórios!", "Erro de Validação", JOptionPane.WARNING_MESSAGE);
+             return;
+        }
+
+        if (livroParaEditar == null) {
+             if(janelaPrincipal.isbnJaExiste(isbn)){
+                 JOptionPane.showMessageDialog(this, "Já existe um livro com este ISBN.", "Erro de Validação", JOptionPane.ERROR_MESSAGE);
+                 return;
+             }
+             Livro novoLivro = new Livro(janelaPrincipal.getProximoIdLivro(), isbn, titulo, autor);
+             boolean adicionado = janelaPrincipal.adicionarLivroNaLista(novoLivro);
+             if(adicionado) {
+                JOptionPane.showMessageDialog(this, "Livro adicionado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+                dispose();
+             } else {
+                JOptionPane.showMessageDialog(this, "Erro ao adicionar o livro na lista.", "Erro", JOptionPane.ERROR_MESSAGE);
+             }
+
+        } else {
+             if(janelaPrincipal.isbnJaExisteEmOutroLivro(isbn, livroParaEditar.getId())){
+                  JOptionPane.showMessageDialog(this, "Já existe outro livro com este ISBN.", "Erro de Validação", JOptionPane.ERROR_MESSAGE);
+                 return;
+             }
+             livroParaEditar.setIsbn(isbn);
+             livroParaEditar.setTitulo(titulo);
+             livroParaEditar.setAutor(autor);
+             // A atualização acontece por referência, só precisamos fechar
+             JOptionPane.showMessageDialog(this, "Livro atualizado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+             dispose();
+        }
     }//GEN-LAST:event_confirmarButtonActionPerformed
 
     /**
