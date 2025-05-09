@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package Vista;
-import Vista.DialogAdicionarEditarLivro;
+import Vista.detalhesLivro;
 
 /**
  *
@@ -27,215 +27,65 @@ public class JanelaPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTabbedPane1 = new javax.swing.JTabbedPane();
-        jPanel1 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tabelaLivros = new javax.swing.JTable();
-        botoesLivros = new javax.swing.JPanel();
-        botaoAdicionarLivro = new javax.swing.JButton();
-        botaoEditarLivro = new javax.swing.JButton();
-        botaoRemoverLivro = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        tabelaMembros = new javax.swing.JTable();
-        botoesMembros = new javax.swing.JPanel();
-        botaoAdicionarMembros = new javax.swing.JButton();
-        botaoEditarMembros = new javax.swing.JButton();
-        botaoRemoverMembros = new javax.swing.JButton();
-        jPanel3 = new javax.swing.JPanel();
-        jScrollPane5 = new javax.swing.JScrollPane();
-        tabelaEmprestimos = new javax.swing.JTable();
-        botoesEmprestimos = new javax.swing.JPanel();
-        botaoAdicionarEmprestimos = new javax.swing.JButton();
-        botaoEditarEmprestimos = new javax.swing.JButton();
-        botaoRemoverEmprestimos = new javax.swing.JButton();
+        jMenuBar2 = new javax.swing.JMenuBar();
+        jMenu3 = new javax.swing.JMenu();
+        jMenu4 = new javax.swing.JMenu();
+        jToolBar2 = new javax.swing.JToolBar();
+        jToolBar3 = new javax.swing.JToolBar();
+        jToolBar1 = new javax.swing.JToolBar();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTextArea2 = new javax.swing.JTextArea();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         menuItemSair = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
+        jMenu5 = new javax.swing.JMenu();
+
+        jMenu3.setText("File");
+        jMenuBar2.add(jMenu3);
+
+        jMenu4.setText("Edit");
+        jMenuBar2.add(jMenu4);
+
+        jToolBar2.setRollover(true);
+
+        jToolBar3.setRollover(true);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(128, 128, 128));
 
-        tabelaLivros.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane1.setViewportView(tabelaLivros);
-        tabelaLivros.getAccessibleContext().setAccessibleName("");
+        jToolBar1.setRollover(true);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 265, Short.MAX_VALUE)
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
+        jScrollPane2.setBackground(new java.awt.Color(128, 128, 128));
 
-        jTabbedPane1.addTab("Livros", jPanel1);
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jScrollPane2.setViewportView(jTextArea1);
 
-        botaoAdicionarLivro.setText("Adicionar Livro");
-        botaoAdicionarLivro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botaoAdicionarLivroActionPerformed(evt);
-            }
-        });
-        botoesLivros.add(botaoAdicionarLivro);
+        jLabel1.setText("Empréstimos Recentes");
 
-        botaoEditarLivro.setText("Editar Livro");
-        botoesLivros.add(botaoEditarLivro);
+        jLabel2.setText("Devoluções Próximas");
 
-        botaoRemoverLivro.setMnemonic('m');
-        botaoRemoverLivro.setText("Remover Livro");
-        botaoRemoverLivro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botaoRemoverLivroActionPerformed(evt);
-            }
-        });
-        botoesLivros.add(botaoRemoverLivro);
+        jTextArea2.setColumns(20);
+        jTextArea2.setRows(5);
+        jScrollPane3.setViewportView(jTextArea2);
 
-        jTabbedPane1.addTab("tab4", botoesLivros);
-
-        tabelaMembros.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane4.setViewportView(tabelaMembros);
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel2Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 265, Short.MAX_VALUE)
-            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel2Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
-
-        jTabbedPane1.addTab("Livros", jPanel2);
-
-        botaoAdicionarMembros.setText("Adicionar Livro");
-        botoesMembros.add(botaoAdicionarMembros);
-        botaoAdicionarMembros.getAccessibleContext().setAccessibleName("Adicionar Membro");
-
-        botaoEditarMembros.setText("Editar Livro");
-        botoesMembros.add(botaoEditarMembros);
-        botaoEditarMembros.getAccessibleContext().setAccessibleName("Editar Membro");
-
-        botaoRemoverMembros.setMnemonic('m');
-        botaoRemoverMembros.setText("Remover Livro");
-        botaoRemoverMembros.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botaoRemoverMembrosActionPerformed(evt);
-            }
-        });
-        botoesMembros.add(botaoRemoverMembros);
-        botaoRemoverMembros.getAccessibleContext().setAccessibleName("Remover Membro");
-
-        jTabbedPane1.addTab("tab4", botoesMembros);
-
-        tabelaEmprestimos.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane5.setViewportView(tabelaEmprestimos);
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel3Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 265, Short.MAX_VALUE)
-            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel3Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
-
-        jTabbedPane1.addTab("Livros", jPanel3);
-
-        botaoAdicionarEmprestimos.setText("Adicionar Livro");
-        botoesEmprestimos.add(botaoAdicionarEmprestimos);
-        botaoAdicionarEmprestimos.getAccessibleContext().setAccessibleName("Adicionar Empréstimo");
-
-        botaoEditarEmprestimos.setText("Editar Livro");
-        botoesEmprestimos.add(botaoEditarEmprestimos);
-        botaoEditarEmprestimos.getAccessibleContext().setAccessibleName("Editar Empréstimo");
-
-        botaoRemoverEmprestimos.setMnemonic('m');
-        botaoRemoverEmprestimos.setText("Remover Livro");
-        botaoRemoverEmprestimos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botaoRemoverEmprestimosActionPerformed(evt);
-            }
-        });
-        botoesEmprestimos.add(botaoRemoverEmprestimos);
-        botaoRemoverEmprestimos.getAccessibleContext().setAccessibleName("Remover Emprestimo");
-
-        jTabbedPane1.addTab("tab4", botoesEmprestimos);
-
-        jMenu1.setText("Ficheiro");
+        jMenu1.setText("Membros");
 
         menuItemSair.setText("Sair");
         jMenu1.add(menuItemSair);
 
         jMenuBar1.add(jMenu1);
 
-        jMenu2.setText("Edit");
+        jMenu2.setText("Livros");
         jMenuBar1.add(jMenu2);
+
+        jMenu5.setText("Exit");
+        jMenuBar1.add(jMenu5);
 
         setJMenuBar(jMenuBar1);
 
@@ -243,34 +93,38 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 351, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(41, 41, 41)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void botaoRemoverLivroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoRemoverLivroActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_botaoRemoverLivroActionPerformed
-
-    private void botaoRemoverMembrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoRemoverMembrosActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_botaoRemoverMembrosActionPerformed
-
-    private void botaoRemoverEmprestimosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoRemoverEmprestimosActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_botaoRemoverEmprestimosActionPerformed
-
-    private void botaoAdicionarLivroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAdicionarLivroActionPerformed
-        // TODO add your handling code here:
-        DialogAdicionarEditarLivro dialog = new DialogAdicionarEditarLivro(this, true, null); // 'this' é o JFrame pai, 'true' para modal, 'null' para adicionar
-        dialog.setVisible(true);
-        atualizarTabelaLivros(); // Atualiza a tabela depois que o diálogo fecha
-    }//GEN-LAST:event_botaoAdicionarLivroActionPerformed
 
      private void atualizarTabelaLivros() {
         // Verifica se o modelo da tabela foi inicializado (segurança)
@@ -343,32 +197,23 @@ public class JanelaPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton botaoAdicionarEmprestimos;
-    private javax.swing.JButton botaoAdicionarLivro;
-    private javax.swing.JButton botaoAdicionarMembros;
-    private javax.swing.JButton botaoEditarEmprestimos;
-    private javax.swing.JButton botaoEditarLivro;
-    private javax.swing.JButton botaoEditarMembros;
-    private javax.swing.JButton botaoRemoverEmprestimos;
-    private javax.swing.JButton botaoRemoverLivro;
-    private javax.swing.JButton botaoRemoverMembros;
-    private javax.swing.JPanel botoesEmprestimos;
-    private javax.swing.JPanel botoesLivros;
-    private javax.swing.JPanel botoesMembros;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMenu4;
+    private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JScrollPane jScrollPane5;
-    private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JMenuBar jMenuBar2;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextArea jTextArea2;
+    private javax.swing.JToolBar jToolBar1;
+    private javax.swing.JToolBar jToolBar2;
+    private javax.swing.JToolBar jToolBar3;
     private javax.swing.JMenuItem menuItemSair;
-    private javax.swing.JTable tabelaEmprestimos;
-    private javax.swing.JTable tabelaLivros;
-    private javax.swing.JTable tabelaMembros;
     // End of variables declaration//GEN-END:variables
 }
 

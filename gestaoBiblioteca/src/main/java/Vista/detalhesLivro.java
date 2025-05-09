@@ -4,47 +4,35 @@
  */
 package Vista;
 import com.mycompany.gestaobiblioteca.Livro;
-
 import javax.swing.*;
-import java.awt.Frame;
 
 /**
  *
  * @author Pedro Almeida
  */
-public class DialogAdicionarEditarLivro extends javax.swing.JDialog {
-
-    /**
-     * Creates new form DialogAdicionarEditarLivro
-     */
+public class detalhesLivro extends javax.swing.JDialog {
     
-    private Livro livroParaEditar;
-    private JanelaPrincipal janelaPrincipal;
+    private Livro livroEditar;
+    private boolean confirmado=false;
     
-    public DialogAdicionarEditarLivro(java.awt.Frame parent, boolean modal, Livro livro) {
+    public detalhesLivro(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
-        this.livroParaEditar = livro;
-        
-        if(parent instanceof JanelaPrincipal){
-            this.janelaPrincipal=(JanelaPrincipal) parent;
-        }else{
-             throw new IllegalArgumentException("O 'parent' deste diálogo deve ser uma instância de JanelaPrincipal.");
-        }
-        
-        initComponents();
-        configurarDialogo();   
-        setLocationRelativeTo(parent);
+        initComponents();//Serve para criar as componenetes visuais
+        this.livroEditar = null;//Indica que é para a adicionar
+        confirmarButton.setText("Adicionar");
+        setTitle("Adicionar Novo Livro");
+        setLocationRelativeTo(parent); //Centraliza
     }
     
     private void configurarDialogo() {
-        if (this.livroParaEditar != null) {
+        if (this.livroEditar != null) {
             // --- Modo Edição ---
             setTitle("Editar Livro"); // Define o título da janela do diálogo
             // Preenche os campos de texto com os dados do livro existente
             // Usa os nomes das variáveis definidas no NetBeans (isbn, titulo, autor)
-            isbn.setText(livroParaEditar.getIsbn());
-            titulo.setText(livroParaEditar.getTitulo());
-            autor.setText(livroParaEditar.getAutor());
+            isbn.setText(livroEditar.getIsbn());
+            titulo.setText(livroEditar.getTitulo());
+            autor.setText(livroEditar.getAutor());
             // Muda o texto do botão de confirmação
             confirmarButton.setText("Guardar Alterações");
         } else {
@@ -76,31 +64,37 @@ public class DialogAdicionarEditarLivro extends javax.swing.JDialog {
         autor = new javax.swing.JTextField();
         confirmarButton = new javax.swing.JButton();
         cancelarButton = new javax.swing.JButton();
+        jToolBar1 = new javax.swing.JToolBar();
+        jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel1.setText("ISBN");
 
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel2.setText("Título");
 
-        jLabel3.setText("Autor:");
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel3.setText("Autor");
 
-        isbn.setText("jTextField1");
+        isbn.setText("ISBN do Livro");
         isbn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 isbnActionPerformed(evt);
             }
         });
 
-        titulo.setText("jTextField2");
+        titulo.setText("Título do Livro");
 
-        autor.setText("jTextField3");
+        autor.setText("Autor do Livro");
         autor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 autorActionPerformed(evt);
             }
         });
 
+        confirmarButton.setBackground(new java.awt.Color(255, 255, 255));
         confirmarButton.setText("Adicionar");
         confirmarButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -108,56 +102,69 @@ public class DialogAdicionarEditarLivro extends javax.swing.JDialog {
             }
         });
 
+        cancelarButton.setBackground(new java.awt.Color(139, 0, 0));
+        cancelarButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cancelarButton.setForeground(new java.awt.Color(255, 255, 255));
         cancelarButton.setText("Cancelar ");
+
+        jToolBar1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jToolBar1.setRollover(true);
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel5.setText(" Detalhes do Livro");
+        jToolBar1.add(jLabel5);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(53, 53, 53)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(autor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(titulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel2))
+                                .addGap(10, 10, 10)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(titulo)
+                                    .addComponent(autor)))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(isbn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGap(18, 18, 18)
+                                .addComponent(isbn))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(124, 124, 124)
-                        .addComponent(confirmarButton)
-                        .addGap(29, 29, 29)
-                        .addComponent(cancelarButton)))
-                .addContainerGap(87, Short.MAX_VALUE))
+                        .addGap(197, 197, 197)
+                        .addComponent(confirmarButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(28, 28, 28)
+                        .addComponent(cancelarButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(88, 88, 88)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
                     .addComponent(isbn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(autor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(titulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(autor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(confirmarButton)
-                    .addComponent(cancelarButton))
-                .addGap(27, 27, 27))
+                    .addComponent(cancelarButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(confirmarButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(46, 46, 46))
         );
 
         pack();
@@ -192,13 +199,13 @@ public class DialogAdicionarEditarLivro extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(DialogAdicionarEditarLivro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(detalhesLivro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(DialogAdicionarEditarLivro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(detalhesLivro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(DialogAdicionarEditarLivro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(detalhesLivro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(DialogAdicionarEditarLivro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(detalhesLivro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
@@ -209,7 +216,7 @@ public class DialogAdicionarEditarLivro extends javax.swing.JDialog {
         /*java.awt.EventQueue.invokeLater(new Runnable() {
        public void run() {
                 // ERRO ESTÁ AQUI: Chama o construtor antigo com apenas 2 argumentos
-                DialogAdicionarEditarLivro dialog = new DialogAdicionarEditarLivro(new javax.swing.JFrame(), true);
+                detalhesLivro dialog = new detalhesLivro(new javax.swing.JFrame(), true);
 
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
@@ -228,6 +235,8 @@ public class DialogAdicionarEditarLivro extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JToolBar jToolBar1;
     private javax.swing.JTextField titulo;
     // End of variables declaration//GEN-END:variables
 }
