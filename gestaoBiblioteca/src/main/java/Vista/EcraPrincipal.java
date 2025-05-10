@@ -3,18 +3,17 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package Vista;
-import Vista.detalhesLivro;
 
 /**
  *
  * @author Pedro Almeida
  */
-public class JanelaPrincipal extends javax.swing.JFrame {
+public class EcraPrincipal extends javax.swing.JFrame {
 
     /**
-     * Creates new form JanelaPrincipal
+     * Creates new form EcraPrincipal
      */
-    public JanelaPrincipal() {
+    public EcraPrincipal() {
         initComponents();
     }
 
@@ -27,38 +26,18 @@ public class JanelaPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jMenuBar2 = new javax.swing.JMenuBar();
-        jMenu3 = new javax.swing.JMenu();
-        jMenu4 = new javax.swing.JMenu();
-        jToolBar2 = new javax.swing.JToolBar();
-        jToolBar3 = new javax.swing.JToolBar();
-        jToolBar1 = new javax.swing.JToolBar();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTextArea2 = new javax.swing.JTextArea();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        menuItemSair = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
-        jMenu5 = new javax.swing.JMenu();
-
-        jMenu3.setText("File");
-        jMenuBar2.add(jMenu3);
-
-        jMenu4.setText("Edit");
-        jMenuBar2.add(jMenu4);
-
-        jToolBar2.setRollover(true);
-
-        jToolBar3.setRollover(true);
+        jMenu3 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setBackground(new java.awt.Color(128, 128, 128));
-
-        jToolBar1.setRollover(true);
 
         jScrollPane2.setBackground(new java.awt.Color(128, 128, 128));
 
@@ -66,26 +45,37 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         jTextArea1.setRows(5);
         jScrollPane2.setViewportView(jTextArea1);
 
-        jLabel1.setText("Empréstimos Recentes");
-
-        jLabel2.setText("Devoluções Próximas");
-
         jTextArea2.setColumns(20);
         jTextArea2.setRows(5);
         jScrollPane3.setViewportView(jTextArea2);
 
+        jLabel2.setText("Devoluções Próximas");
+
+        jLabel1.setText("Empréstimos Recentes");
+
         jMenu1.setText("Membros");
-
-        menuItemSair.setText("Sair");
-        jMenu1.add(menuItemSair);
-
+        jMenu1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu1ActionPerformed(evt);
+            }
+        });
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Livros");
+        jMenu2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu2ActionPerformed(evt);
+            }
+        });
         jMenuBar1.add(jMenu2);
 
-        jMenu5.setText("Exit");
-        jMenuBar1.add(jMenu5);
+        jMenu3.setText("Exit");
+        jMenu3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu3ActionPerformed(evt);
+            }
+        });
+        jMenuBar1.add(jMenu3);
 
         setJMenuBar(jMenuBar1);
 
@@ -102,10 +92,8 @@ public class JanelaPrincipal extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 365, Short.MAX_VALUE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 373, Short.MAX_VALUE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING))
                         .addGap(15, 15, 15))))
         );
         layout.setVerticalGroup(
@@ -125,41 +113,19 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-     private void atualizarTabelaLivros() {
-        // Verifica se o modelo da tabela foi inicializado (segurança)
-        if (tabelaLivros == null) {
-             System.err.println("Erro: tableModelLivros não foi inicializado em configurarTabelas().");
-             // Você pode querer inicializá-lo aqui se for o caso, ou lançar um erro.
-             // Exemplo: configurarTabelas(); // Chama se ainda não foi chamado
-             // if (tableModelLivros == null) return; // Sai se ainda for null
-             return; // Ou simplesmente sai se não estiver pronto
-        }
-         // Verifica se a lista de dados foi inicializada (segurança)
-         if (listaLivros == null) {
-             System.err.println("Erro: listaLivros não foi inicializada.");
-             // Você pode querer inicializá-la aqui se for o caso
-             // Exemplo: listaLivros = new ArrayList<>();
-             return; // Sai se não estiver pronta
-         }
+    private void jMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenu1ActionPerformed
 
-        // 1. Limpa todas as linhas existentes na tabela visual
-        tabelaLivros.setRowCount(0);
+    private void jMenu2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenu2ActionPerformed
 
-        // 2. Itera sobre a lista de livros atualizada
-        for (Livro livro : listaLivros) {
-            // 3. Cria um array de Object com os dados do livro para a linha da tabela
-            Object[] rowData = new Object[]{
-                livro.getId(),
-                livro.getIsbn(),
-                livro.getTitulo(),
-                livro.getAutor(),
-                // Converte o boolean 'disponivel' para uma String mais legível
-                livro.isDisponivel() ? "Disponível" : "Emprestado"
-            };
-            // 4. Adiciona a nova linha ao modelo da tabela
-            tabelaLivros.addRow(rowData);
-        }
-    }
+    private void jMenu3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu3ActionPerformed
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_jMenu3ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -177,20 +143,20 @@ public class JanelaPrincipal extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(JanelaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EcraPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(JanelaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EcraPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(JanelaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EcraPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(JanelaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EcraPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new JanelaPrincipal().setVisible(true);
+                new EcraPrincipal().setVisible(true);
             }
         });
     }
@@ -201,25 +167,10 @@ public class JanelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenu jMenu4;
-    private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextArea jTextArea2;
-    private javax.swing.JToolBar jToolBar1;
-    private javax.swing.JToolBar jToolBar2;
-    private javax.swing.JToolBar jToolBar3;
-    private javax.swing.JMenuItem menuItemSair;
     // End of variables declaration//GEN-END:variables
 }
-
-
-
-
-
-
-
-
